@@ -41,6 +41,22 @@ public class PaletteServiceImpl implements PaletteService {
     }
 
     @Override
+    public PaletteCommand createPaletteByCategoryName(String color1, String color2, String color3, String color4, String CategoryName) {
+        var category = categoryRepository.findByNameIgnoreCase(CategoryName).get();
+
+        var palette = new Palette(color1, color2, color3, color4);
+        palette.setCreationDate(Instant.now());
+        var savedPalette = paletteRepository.save(palette);
+
+        category.addPalette(savedPalette);
+
+        categoryRepository.save(category);
+        var result = paletteRepository.save(savedPalette);
+
+        return PaletteCommand.createCommand(result);
+    }
+
+    @Override
     public PaletteCommand addToCategory(UUID paletteId, UUID categoryId) {
 
         var category = categoryRepository.findById(categoryId).get();

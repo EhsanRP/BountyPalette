@@ -1,6 +1,7 @@
 package ir.ac.pgu.bountypalette.controllers;
 
 import ir.ac.pgu.bountypalette.controllers.commands.PaletteCommand;
+import ir.ac.pgu.bountypalette.controllers.commands.PostColors;
 import ir.ac.pgu.bountypalette.services.PaletteService;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -59,5 +60,10 @@ public class PaletteController {
                                         @RequestParam String color3,
                                         @RequestParam String color4) {
         return paletteService.updatePalette(paletteId,color1,color2,color3,color4);
+    }
+
+    @PostMapping("/create/{categoryName}")
+    public PaletteCommand createPaletteByCategoryName(@PathVariable String categoryName, @RequestBody PostColors postColors){
+        return paletteService.createPaletteByCategoryName(postColors.getColor1(),postColors.getColor2(),postColors.getColor3(),postColors.getColor4(),categoryName);
     }
 }

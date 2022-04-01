@@ -13,6 +13,8 @@ public interface PaletteService {
 
     PaletteCommand createPalette(String color1, String color2, String color3, String color4, UUID categoryId);
 
+    PaletteCommand createPaletteByCategoryName(String color1, String color2, String color3, String color4, String CategoryName);
+
     PaletteCommand addToCategory(UUID paletteId, UUID categoryId);
 
     PaletteCommand likePalette(UUID paletteId);

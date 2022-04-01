@@ -29,6 +29,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryCommand createCategory(String name) {
+
+        var oldCategory = categoryRepository.findByNameIgnoreCase(name);
+        if (oldCategory.isPresent())
+            return CategoryCommand.createCommand(categoryRepository.findByNameIgnoreCase(name).get());
+
         var category = new Category(name);
         var savedCategory = categoryRepository.save(category);
         return CategoryCommand.createCommand(category);
