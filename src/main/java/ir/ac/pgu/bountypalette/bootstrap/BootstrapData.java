@@ -16,6 +16,7 @@ import java.time.Instant;
 @RequiredArgsConstructor
 @Value
 @Slf4j
+@Component
 public class BootstrapData implements CommandLineRunner {
 
     CategoryRepository categoryRepository;

@@ -1,0 +1,10 @@
+kind: ExternalService
+name: bounty-palette
+spec:
+  image_pull_policy: Always
+  port: 80
+  source:
+    context: .
+    jar_name: bountyPalette-1.0.0-SNAPSHOT.jar
+    jdk_version: '11'
+    project_type: spring_boot
