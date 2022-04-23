@@ -1,6 +1,7 @@
 package ir.ac.pgu.bountypalette.services;
 
 import ir.ac.pgu.bountypalette.controllers.commands.PaletteCommand;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,4 +23,8 @@ public interface PaletteService {
     void removePalette(UUID id);
 
     PaletteCommand updatePalette(String paletteId, String color1, String color2, String color3, String color4);
+
+    PaletteCommand dislikePalette(UUID paletteId);
+
+    List<PaletteCommand> findAllByCategoryName(String categoryName, Pageable pageable);
 }

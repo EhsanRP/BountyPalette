@@ -1,6 +1,7 @@
 package ir.ac.pgu.bountypalette.bootstrap;
 
 import ir.ac.pgu.bountypalette.domain.Category;
+import ir.ac.pgu.bountypalette.domain.Comment;
 import ir.ac.pgu.bountypalette.domain.Palette;
 import ir.ac.pgu.bountypalette.repositories.CategoryRepository;
 import ir.ac.pgu.bountypalette.repositories.CommentRepository;
@@ -158,5 +159,18 @@ public class BootstrapData implements CommandLineRunner {
             categoryRepository.save(category);
             step++;
         }
+
+
+        for (Palette palette: paletteRepository.findAll()){
+            for (int i = 0; i < 10; i++) {
+                var comment = new Comment("author","title", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+                commentRepository.save(comment);
+                palette.addComment(comment);
+                paletteRepository.save(palette);
+                commentRepository.save(comment);
+            }
+        }
+
     }
+
 }

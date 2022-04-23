@@ -19,6 +19,8 @@ public class Comment {
 
     private String author;
     private String title;
+
+    @Lob
     private String message;
 
     @ManyToOne

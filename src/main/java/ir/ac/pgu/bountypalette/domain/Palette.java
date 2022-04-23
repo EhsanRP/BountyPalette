@@ -50,4 +50,7 @@ public class Palette implements Serializable {
     public void increaseLikes() {
         this.likes++;
     }
+    public void decreaseLikes() {
+        this.likes--;
+    }
 }
