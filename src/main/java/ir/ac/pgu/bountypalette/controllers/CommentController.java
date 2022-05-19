@@ -23,15 +23,16 @@ public class CommentController {
     }
 
     @PostMapping()
-    public void postComment(@PathVariable String paletteId,
-                            @RequestParam String author,
-                            @RequestParam String title,
-                            @RequestParam String message) {
-        commentService.createComment(author,title,message,UUID.fromString(paletteId));
+    public CommentCommand postComment(@PathVariable String paletteId,
+                                      @RequestParam String author,
+                                      @RequestParam String title,
+                                      @RequestParam String message,
+                                      @RequestParam String father) {
+        return commentService.createComment(author, title, message, UUID.fromString(paletteId),UUID.fromString(father));
     }
 
     @DeleteMapping("/{commentId}")
-    public void deleteComment(@PathVariable String commentId){
+    public void deleteComment(@PathVariable String commentId) {
         commentService.removeComment(UUID.fromString(commentId));
     }
 }

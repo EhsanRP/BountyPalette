@@ -50,11 +50,6 @@ public class CategoryController {
         return categoryService.getCategorySizeByName(categoryName);
     }
 
-    @GetMapping("/category/{categoryName}")
-    public int getCategoryByName(@PathVariable String categoryName){
-        return categoryService.getCategorySizeByName(categoryName);
-    }
-
     @GetMapping("/names")
     public List<String> getCategoryNames(){
         return categoryService.findAllNames();

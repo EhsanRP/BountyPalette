@@ -113,7 +113,8 @@ public class PaletteServiceImpl implements PaletteService {
 
     @Override
     public List<PaletteCommand> findAllByCategoryName(String categoryName, Pageable pageable) {
-        var allPalettes = paletteRepository.findAllByCategory_Name(categoryName,pageable);
+        var category = categoryRepository.findByNameIgnoreCase(categoryName);
+        var allPalettes = paletteRepository.findAllByCategory_NameIgnoreCase(categoryName,pageable);
 
         return PaletteCommand.createListCommand(allPalettes);
     }

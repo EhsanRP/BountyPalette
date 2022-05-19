@@ -29,15 +29,22 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void createComment(String author, String title, String message,UUID paletteId) {
+    public CommentCommand createComment(String author, String title, String message,UUID paletteId,UUID father) {
         var comment = new Comment(author, title, message);
+        if (father !=null){
+
+            var fatherComment = commentRepository.findById(father).get();
+            comment.setFather(fatherComment);
+        }
         commentRepository.save(comment);
 
         var palette = paletteRepository.findById(paletteId).get();
         palette.addComment(comment);
 
         paletteRepository.save(palette);
-        commentRepository.save(comment);
+        var saved= commentRepository.save(comment);
+
+        return CommentCommand.createCommand(saved);
     }
 
     @Override

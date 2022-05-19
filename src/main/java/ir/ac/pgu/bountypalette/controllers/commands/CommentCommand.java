@@ -21,7 +21,7 @@ public class CommentCommand {
     private String author;
     private String title;
     private String message;
-
+    private UUID father;
     private UUID paletteId;
 
     public CommentCommand(Comment comment) {

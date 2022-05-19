@@ -20,6 +20,9 @@ public class Comment {
     private String author;
     private String title;
 
+    @ManyToOne
+    private Comment father;
+
     @Lob
     private String message;
 
@@ -30,5 +33,6 @@ public class Comment {
         this.author = author;
         this.title = title;
         this.message = message;
+        this.father = null;
     }
 }

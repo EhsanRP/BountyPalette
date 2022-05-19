@@ -1,5 +1,6 @@
 package ir.ac.pgu.bountypalette.controllers;
 
+import ir.ac.pgu.bountypalette.controllers.commands.CategoryCommand;
 import ir.ac.pgu.bountypalette.controllers.commands.PaletteCommand;
 import ir.ac.pgu.bountypalette.controllers.commands.PostColors;
 import ir.ac.pgu.bountypalette.services.PaletteService;
@@ -86,4 +87,5 @@ public class PaletteController {
     public List<PaletteCommand> getPopularPalettes(){
         return paletteService.getPopular();
     }
+
 }
