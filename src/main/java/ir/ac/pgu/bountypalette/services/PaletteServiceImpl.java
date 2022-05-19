@@ -117,4 +117,9 @@ public class PaletteServiceImpl implements PaletteService {
 
         return PaletteCommand.createListCommand(allPalettes);
     }
+
+    @Override
+    public List<PaletteCommand> getPopular() {
+        return null;
+    }
 }

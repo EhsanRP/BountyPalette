@@ -37,8 +37,9 @@ public class PaletteController {
         return paletteService.findPaletteById(UUID.fromString(paletteId));
     }
 
-    @PutMapping("/{paletteId}")
+    @PutMapping("/like/{paletteId}")
     public PaletteCommand likePalette(@PathVariable String paletteId) {
+        System.out.println("handling like");
         return paletteService.likePalette(UUID.fromString(paletteId));
     }
 
@@ -79,5 +80,10 @@ public class PaletteController {
     @PostMapping("/create/{categoryName}")
     public PaletteCommand createPaletteByCategoryName(@PathVariable String categoryName, @RequestBody PostColors postColors) {
         return paletteService.createPaletteByCategoryName(postColors.getColor1(), postColors.getColor2(), postColors.getColor3(), postColors.getColor4(), categoryName);
+    }
+
+    @GetMapping("/popular")
+    public List<PaletteCommand> getPopularPalettes(){
+        return paletteService.getPopular();
     }
 }

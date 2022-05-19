@@ -1,5 +1,6 @@
 package ir.ac.pgu.bountypalette.controllers.commands;
 
+import ir.ac.pgu.bountypalette.controllers.CategoryController;
 import ir.ac.pgu.bountypalette.domain.Category;
 import ir.ac.pgu.bountypalette.domain.Palette;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class CategoryCommand {
     private String name;
 
     private Set<UUID> palettes = new HashSet<>();
+
 
     public CategoryCommand(Category category) {
         this.id = category.getId();

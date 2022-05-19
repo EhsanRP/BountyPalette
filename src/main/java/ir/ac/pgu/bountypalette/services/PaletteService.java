@@ -27,4 +27,6 @@ public interface PaletteService {
     PaletteCommand dislikePalette(UUID paletteId);
 
     List<PaletteCommand> findAllByCategoryName(String categoryName, Pageable pageable);
+
+    List<PaletteCommand> getPopular();
 }

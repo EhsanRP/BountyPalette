@@ -16,4 +16,8 @@ public interface CategoryService {
     void removeCategory(UUID id);
 
     CategoryCommand updateCategory(UUID id,String name);
+
+    int getCategorySizeByName(String name);
+
+    List<String> findAllNames();
 }

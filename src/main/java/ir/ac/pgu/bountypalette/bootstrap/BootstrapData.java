@@ -32,7 +32,7 @@ public class BootstrapData implements CommandLineRunner {
         var categoriesArray = categories.split(" ");
 
         for (String categoryStr : categoriesArray) {
-            var categoryObj = new Category(categoryStr);
+            var categoryObj = new Category(categoryStr.toLowerCase());
             try {
                 var result = categoryRepository.save(categoryObj);
             } catch (Exception e) {
@@ -131,13 +131,16 @@ public class BootstrapData implements CommandLineRunner {
 
         if (paletteArray.length % 4 != 0) {
             log.debug("palette with name {} entries are wrong, has {} inputs", categoryStr, paletteArray.length);
+
+            System.out.println("palette with name " + categoryStr + " entries are wrong, has " + paletteArray.length + " inputs");
             return;
         }
 
         var categoryOptional = categoryRepository.findByNameIgnoreCase(categoryStr);
 
-        if (categoryOptional.isEmpty()){
+        if (categoryOptional.isEmpty()) {
             log.debug("category with name {} is not present", categoryStr);
+            System.out.println("category with name " + categoryStr + " is not present");
             return;
         }
 
@@ -161,9 +164,9 @@ public class BootstrapData implements CommandLineRunner {
         }
 
 
-        for (Palette palette: paletteRepository.findAll()){
+        for (Palette palette : paletteRepository.findAll()) {
             for (int i = 0; i < 10; i++) {
-                var comment = new Comment("author","title", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+                var comment = new Comment("author", "title", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
                 commentRepository.save(comment);
                 palette.addComment(comment);
                 paletteRepository.save(palette);

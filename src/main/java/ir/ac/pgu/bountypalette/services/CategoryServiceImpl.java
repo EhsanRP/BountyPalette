@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Value
 @RequiredArgsConstructor
@@ -25,6 +26,20 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryCommand findCategoryById(UUID id) {
         return CategoryCommand.createCommand(categoryRepository.findById(id).get());
+    }
+
+    @Override
+    public int getCategorySizeByName(String name){
+        var category = categoryRepository.findByNameIgnoreCase(name).get();
+        return category.getPalettes().size();
+    }
+
+    @Override
+    public List<String> findAllNames() {
+        return categoryRepository.findAll()
+                .stream()
+                .map(Category::getName)
+                .collect(Collectors.toList());
     }
 
     @Override

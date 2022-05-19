@@ -11,4 +11,6 @@ public interface PaletteRepository extends PagingAndSortingRepository<Palette, U
 
     List<Palette> findAllByCategory_Name(String name, Pageable pageable);
 
+    List<Palette> findAllBy();
+
 }
