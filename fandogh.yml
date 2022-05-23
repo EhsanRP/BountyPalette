@@ -1,10 +1,10 @@
 kind: ExternalService
-name: bounty-palette
+name: colorhunt
 spec:
   image_pull_policy: Always
   port: 80
   source:
     context: .
-    jar_name: bountyPalette-1.0.0-SNAPSHOT.jar
+    jar_name: bountyPalette-0.0.1-SNAPSHOT.jar
     jdk_version: '11'
     project_type: spring_boot

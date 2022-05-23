@@ -28,7 +28,7 @@ public class PaletteCommand implements Serializable {
     private String color4;
 
     private Integer likes;
-
+    private Boolean isApproved;
     private Instant creationDate;
 
     private Set<CommentCommand> comments = new HashSet<>();
@@ -44,6 +44,7 @@ public class PaletteCommand implements Serializable {
         this.likes = palette.getLikes();
         this.creationDate = palette.getCreationDate();
         this.categoryId = palette.getCategory().getId();
+        this.isApproved = palette.getIsApproved();
 
         this.comments = palette.getComments().stream().map(CommentCommand::new).collect(Collectors.toSet());
     }

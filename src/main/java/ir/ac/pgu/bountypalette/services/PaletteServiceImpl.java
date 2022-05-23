@@ -114,7 +114,7 @@ public class PaletteServiceImpl implements PaletteService {
     @Override
     public List<PaletteCommand> findAllByCategoryName(String categoryName, Pageable pageable) {
         var category = categoryRepository.findByNameIgnoreCase(categoryName);
-        var allPalettes = paletteRepository.findAllByCategory_NameIgnoreCase(categoryName,pageable);
+        var allPalettes = paletteRepository.findAllByCategory_NameIgnoreCaseAndIsApproved(categoryName,true,pageable);
 
         return PaletteCommand.createListCommand(allPalettes);
     }
@@ -122,5 +122,10 @@ public class PaletteServiceImpl implements PaletteService {
     @Override
     public List<PaletteCommand> getPopular() {
         return null;
+    }
+
+    @Override
+    public List<PaletteCommand> findUnApprovedPalettes() {
+        return PaletteCommand.createListCommand(paletteRepository.findAllByIsApproved(false));
     }
 }

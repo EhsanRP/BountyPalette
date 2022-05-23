@@ -154,6 +154,7 @@ public class BootstrapData implements CommandLineRunner {
             palette.setColor3(paletteArray[i + 2]);
             palette.setColor4(paletteArray[i + 3]);
             palette.setCreationDate(Instant.now());
+            palette.setIsApproved(true);
 
             paletteRepository.save(palette);
             category.addPalette(palette);

@@ -29,6 +29,8 @@ public class Palette implements Serializable {
 
     private Instant creationDate;
 
+    private Boolean isApproved = false;
+
     @OneToMany(mappedBy = "palette", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Comment> comments = new HashSet<>();
 

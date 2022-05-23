@@ -9,7 +9,9 @@ import java.util.UUID;
 
 public interface PaletteRepository extends PagingAndSortingRepository<Palette, UUID> {
 
-    List<Palette> findAllByCategory_NameIgnoreCase(String name, Pageable pageable);
+    List<Palette> findAllByCategory_NameIgnoreCaseAndIsApproved(String name,Boolean isApproved, Pageable pageable);
+
+    List<Palette> findAllByIsApproved(Boolean isApproved);
 
     List<Palette> findAllBy();
 

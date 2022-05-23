@@ -29,4 +29,6 @@ public interface PaletteService {
     List<PaletteCommand> findAllByCategoryName(String categoryName, Pageable pageable);
 
     List<PaletteCommand> getPopular();
+
+    List<PaletteCommand> findUnApprovedPalettes();
 }
