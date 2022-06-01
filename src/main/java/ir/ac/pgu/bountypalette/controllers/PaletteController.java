@@ -40,8 +40,16 @@ public class PaletteController {
 
     @PutMapping("/like/{paletteId}")
     public PaletteCommand likePalette(@PathVariable String paletteId) {
-        System.out.println("handling like");
-        return paletteService.likePalette(UUID.fromString(paletteId));
+        System.out.println("Handling like");
+        var data = paletteService.likePalette(UUID.fromString(paletteId));
+        System.out.println("Request handled");
+        return data;
+    }
+
+
+    @PutMapping("/dislike/{paletteId}")
+    public PaletteCommand dislikePalette(@PathVariable String paletteId) {
+        return paletteService.dislikePalette(UUID.fromString(paletteId));
     }
 
     @PostMapping("/{categoryId}")
@@ -73,10 +81,6 @@ public class PaletteController {
         return paletteService.updatePalette(paletteId, color1, color2, color3, color4);
     }
 
-    @PutMapping("/dislike/{paletteId}")
-    public PaletteCommand dislikePalette(@PathVariable String paletteId) {
-        return paletteService.dislikePalette(UUID.fromString(paletteId));
-    }
 
     @PostMapping("/create/{categoryName}")
     public PaletteCommand createPaletteByCategoryName(@PathVariable String categoryName, @RequestBody PostColors postColors) {
