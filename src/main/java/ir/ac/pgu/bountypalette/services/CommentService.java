@@ -9,7 +9,7 @@ public interface CommentService {
 
     List<CommentCommand> findAllPaletteComments(UUID paletteId);
 
-    CommentCommand createComment(String author, String title, String message,UUID paletteId,UUID father);
+    CommentCommand createComment(String author, String title, String message,UUID paletteId);
 
     void removeComment(UUID commentId);
 }

@@ -26,9 +26,8 @@ public class CommentController {
     public CommentCommand postComment(@PathVariable String paletteId,
                                       @RequestParam String author,
                                       @RequestParam String title,
-                                      @RequestParam String message,
-                                      @RequestParam String father) {
-        return commentService.createComment(author, title, message, UUID.fromString(paletteId),UUID.fromString(father));
+                                      @RequestParam String message) {
+        return commentService.createComment(author, title, message, UUID.fromString(paletteId));
     }
 
     @DeleteMapping("/{commentId}")
