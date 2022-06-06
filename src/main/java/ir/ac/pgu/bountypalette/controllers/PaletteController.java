@@ -26,12 +26,19 @@ public class PaletteController {
         return paletteService.findAllPalettes();
     }
 
+    @GetMapping("/list/all")
+    public List<PaletteCommand> getAllPalettesByIDList(@RequestBody List<UUID> idList){
+        return paletteService.findAllPalettesById(idList);
+    }
+
+
     @GetMapping("/all/{categoryName}")
     public List<PaletteCommand> getAllPalettesByCategoryName(@PathVariable String categoryName , @RequestParam int pageSize, @RequestParam int pageNumber) {
        Pageable page = PageRequest.of(pageNumber-1,pageSize);
 
         return paletteService.findAllByCategoryName(categoryName,page);
     }
+
 
     @GetMapping("/{paletteId}")
     public PaletteCommand getPaletteById(@PathVariable String paletteId) {

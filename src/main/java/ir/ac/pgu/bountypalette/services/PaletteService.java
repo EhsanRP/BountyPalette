@@ -31,4 +31,6 @@ public interface PaletteService {
     List<PaletteCommand> getPopular();
 
     List<PaletteCommand> findUnApprovedPalettes();
+
+    List<PaletteCommand> findAllPalettesById(List<UUID> idList);
 }

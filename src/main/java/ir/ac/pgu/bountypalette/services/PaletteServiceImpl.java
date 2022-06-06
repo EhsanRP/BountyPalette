@@ -128,4 +128,9 @@ public class PaletteServiceImpl implements PaletteService {
     public List<PaletteCommand> findUnApprovedPalettes() {
         return PaletteCommand.createListCommand(paletteRepository.findAllByIsApproved(false));
     }
+
+    @Override
+    public List<PaletteCommand> findAllPalettesById(List<UUID> idList) {
+        return PaletteCommand.createListCommand(paletteRepository.findAllByIdIn(idList));
+    }
 }

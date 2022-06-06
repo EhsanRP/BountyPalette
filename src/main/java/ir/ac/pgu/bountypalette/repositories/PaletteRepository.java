@@ -15,4 +15,6 @@ public interface PaletteRepository extends PagingAndSortingRepository<Palette, U
 
     List<Palette> findAllBy();
 
+    List<Palette> findAllByIdIn(List<UUID> idList);
+
 }
