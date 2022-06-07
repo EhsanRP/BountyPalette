@@ -138,4 +138,9 @@ public class PaletteServiceImpl implements PaletteService {
     public List<PaletteCommand> findAllPalettesById(List<UUID> idList) {
         return PaletteCommand.createListCommand(paletteRepository.findAllByIdIn(idList));
     }
+
+    @Override
+    public List<PaletteCommand> getRandom() {
+        return PaletteCommand.createListCommand(paletteRepository.findAllRandom());
+    }
 }

@@ -33,4 +33,6 @@ public interface PaletteService {
     List<PaletteCommand> findUnApprovedPalettes();
 
     List<PaletteCommand> findAllPalettesById(List<UUID> idList);
+
+    List<PaletteCommand> getRandom();
 }

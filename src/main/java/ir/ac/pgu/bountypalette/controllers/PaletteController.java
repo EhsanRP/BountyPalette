@@ -3,6 +3,7 @@ package ir.ac.pgu.bountypalette.controllers;
 import ir.ac.pgu.bountypalette.controllers.commands.CategoryCommand;
 import ir.ac.pgu.bountypalette.controllers.commands.PaletteCommand;
 import ir.ac.pgu.bountypalette.controllers.commands.PostColors;
+import ir.ac.pgu.bountypalette.domain.Palette;
 import ir.ac.pgu.bountypalette.services.PaletteService;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -97,6 +98,11 @@ public class PaletteController {
     @GetMapping("/popular")
     public List<PaletteCommand> getPopularPalettes(){
         return paletteService.getPopular();
+    }
+
+    @GetMapping("/random")
+    public List<PaletteCommand> getRandom(){
+        return paletteService.getRandom();
     }
 
 }

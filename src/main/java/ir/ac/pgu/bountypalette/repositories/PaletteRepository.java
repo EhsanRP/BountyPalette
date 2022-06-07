@@ -2,6 +2,7 @@ package ir.ac.pgu.bountypalette.repositories;
 
 import ir.ac.pgu.bountypalette.domain.Palette;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
@@ -13,7 +14,8 @@ public interface PaletteRepository extends PagingAndSortingRepository<Palette, U
 
     List<Palette> findAllByIsApproved(Boolean isApproved);
 
-
+    @Query(nativeQuery = true,value = "Select * from Palette order by random()")
+    List<Palette> findAllRandom();
     List<Palette> findAllByIdIn(List<UUID> idList);
 
 }
