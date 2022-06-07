@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -25,7 +27,7 @@ public class PaletteServiceImpl implements PaletteService {
 
     @Override
     public List<PaletteCommand> findAllPalettes() {
-        Pageable page = PageRequest.of(0,Integer.MAX_VALUE);
+        Pageable page = PageRequest.of(0, Integer.MAX_VALUE);
         return PaletteCommand.createListCommand(paletteRepository.findAll(page).stream().collect(Collectors.toList()));
     }
 
@@ -114,14 +116,17 @@ public class PaletteServiceImpl implements PaletteService {
     @Override
     public List<PaletteCommand> findAllByCategoryName(String categoryName, Pageable pageable) {
         var category = categoryRepository.findByNameIgnoreCase(categoryName);
-        var allPalettes = paletteRepository.findAllByCategory_NameIgnoreCaseAndIsApproved(categoryName,true,pageable);
+        var allPalettes = paletteRepository.findAllByCategory_NameIgnoreCaseAndIsApproved(categoryName, true, pageable);
 
         return PaletteCommand.createListCommand(allPalettes);
     }
 
     @Override
     public List<PaletteCommand> getPopular() {
-        return null;
+        var sorted = paletteRepository.findAll(Sort.by("likes").descending());
+        var list = new ArrayList<Palette>();
+        sorted.forEach(list::add);
+        return PaletteCommand.createListCommand(list);
     }
 
     @Override
