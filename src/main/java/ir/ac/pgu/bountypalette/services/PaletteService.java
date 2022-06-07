@@ -9,6 +9,7 @@ import java.util.UUID;
 public interface PaletteService {
 
     List<PaletteCommand> findAllPalettes();
+    List<PaletteCommand> findAllByCategoryId(UUID categoryId);
 
     PaletteCommand findPaletteById(UUID id);
 

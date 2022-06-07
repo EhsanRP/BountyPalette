@@ -27,6 +27,11 @@ public class PaletteController {
         return paletteService.findAllPalettes();
     }
 
+    @GetMapping("/all/{categoryId}")
+    public List<PaletteCommand> getAllPalettesByCategoryId(@PathVariable String categoryId) {
+        return paletteService.findAllByCategoryId(UUID.fromString(categoryId));
+    }
+
     @GetMapping("/list/all")
     public List<PaletteCommand> getAllPalettesByIDList(@RequestBody List<UUID> idList){
         return paletteService.findAllPalettesById(idList);
@@ -39,7 +44,6 @@ public class PaletteController {
 
         return paletteService.findAllByCategoryName(categoryName,page);
     }
-
 
     @GetMapping("/{paletteId}")
     public PaletteCommand getPaletteById(@PathVariable String paletteId) {

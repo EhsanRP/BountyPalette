@@ -32,6 +32,13 @@ public class PaletteServiceImpl implements PaletteService {
     }
 
     @Override
+    public List<PaletteCommand> findAllByCategoryId(UUID categoryId) {
+        var category = categoryRepository.findById(categoryId).get();
+
+        return PaletteCommand.createListCommand(new ArrayList<>(category.getPalettes()));
+    }
+
+    @Override
     public PaletteCommand findPaletteById(UUID id) {
         return PaletteCommand.createCommand(paletteRepository.findById(id).get());
     }
