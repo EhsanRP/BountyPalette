@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface PaletteService {
 
-    List<PaletteCommand> findAllPalettes();
+    List<PaletteCommand> findAllPalettes(Pageable pageable);
     List<PaletteCommand> findAllByCategoryId(UUID categoryId);
 
     PaletteCommand findPaletteById(UUID id);
@@ -36,4 +36,6 @@ public interface PaletteService {
     List<PaletteCommand> findAllPalettesById(List<UUID> idList);
 
     List<PaletteCommand> getRandom();
+
+    List<PaletteCommand> findFamiliar(UUID paletteId);
 }

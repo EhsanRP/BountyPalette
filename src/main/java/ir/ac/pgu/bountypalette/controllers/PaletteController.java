@@ -23,11 +23,12 @@ public class PaletteController {
     PaletteService paletteService;
 
     @GetMapping("/all")
-    public List<PaletteCommand> getAllPalettes() {
-        return paletteService.findAllPalettes();
+    public List<PaletteCommand> getAllPalettes(@RequestParam int pageSize, @RequestParam int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber-1,pageSize);
+        return paletteService.findAllPalettes(pageable);
     }
 
-    @GetMapping("/all/{categoryId}")
+    @GetMapping("/{categoryId}/all")
     public List<PaletteCommand> getAllPalettesByCategoryId(@PathVariable String categoryId) {
         return paletteService.findAllByCategoryId(UUID.fromString(categoryId));
     }
@@ -52,10 +53,7 @@ public class PaletteController {
 
     @PutMapping("/like/{paletteId}")
     public PaletteCommand likePalette(@PathVariable String paletteId) {
-        System.out.println("Handling like");
-        var data = paletteService.likePalette(UUID.fromString(paletteId));
-        System.out.println("Request handled");
-        return data;
+        return paletteService.likePalette(UUID.fromString(paletteId));
     }
 
 
@@ -73,6 +71,7 @@ public class PaletteController {
 
         return paletteService.createPalette(color1, color2, color3, color4, UUID.fromString(categoryId));
     }
+
 
     @PutMapping("/category/{categoryId}/palette/{paletteId}")
     public PaletteCommand changeCategory(@PathVariable String categoryId, @PathVariable String paletteId) {
@@ -109,4 +108,8 @@ public class PaletteController {
         return paletteService.getRandom();
     }
 
+    @GetMapping("/findFamiliar/{paletteId}")
+    public List<PaletteCommand> findFamiliar(@PathVariable String paletteId){
+        return paletteService.findFamiliar(UUID.fromString(paletteId));
+    }
 }

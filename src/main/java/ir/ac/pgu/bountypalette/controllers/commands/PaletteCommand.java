@@ -43,7 +43,13 @@ public class PaletteCommand implements Serializable {
         this.color4 = palette.getColor4();
         this.likes = palette.getLikes();
         this.creationDate = palette.getCreationDate();
-        this.categoryId = palette.getCategory().getId();
+        try {
+            this.categoryId = palette.getCategory().getId();
+        }
+        catch (Exception e){
+            System.out.println(palette.getId());
+            e.printStackTrace();
+        }
         this.isApproved = palette.getIsApproved();
 
         this.comments = palette.getComments().stream().map(CommentCommand::new).collect(Collectors.toSet());

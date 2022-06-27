@@ -6,6 +6,7 @@ import ir.ac.pgu.bountypalette.repositories.CategoryRepository;
 import ir.ac.pgu.bountypalette.repositories.PaletteRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,9 +27,8 @@ public class PaletteServiceImpl implements PaletteService {
     PaletteRepository paletteRepository;
 
     @Override
-    public List<PaletteCommand> findAllPalettes() {
-        Pageable page = PageRequest.of(0, Integer.MAX_VALUE);
-        return PaletteCommand.createListCommand(paletteRepository.findAll(page).stream().collect(Collectors.toList()));
+    public List<PaletteCommand> findAllPalettes(Pageable pageable) {
+        return PaletteCommand.createListCommand(paletteRepository.findAll(pageable).stream().collect(Collectors.toList()));
     }
 
     @Override
@@ -149,5 +149,17 @@ public class PaletteServiceImpl implements PaletteService {
     @Override
     public List<PaletteCommand> getRandom() {
         return PaletteCommand.createListCommand(paletteRepository.findAllRandom());
+    }
+
+    @Override
+    public List<PaletteCommand> findFamiliar(UUID paletteId) {
+        var categoryId = paletteRepository.findById(paletteId).get()
+                .getCategory()
+                .getId();
+        var palettes = paletteRepository.findAllByCategory_Id(categoryId)
+                .stream()
+                .limit(12)
+                .collect(Collectors.toList());
+        return PaletteCommand.createListCommand(palettes);
     }
 }

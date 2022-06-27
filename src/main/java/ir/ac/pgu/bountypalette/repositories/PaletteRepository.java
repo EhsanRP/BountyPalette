@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PaletteRepository extends PagingAndSortingRepository<Palette, UUID> {
@@ -17,5 +18,8 @@ public interface PaletteRepository extends PagingAndSortingRepository<Palette, U
     @Query(nativeQuery = true,value = "Select * from Palette order by random()")
     List<Palette> findAllRandom();
     List<Palette> findAllByIdIn(List<UUID> idList);
+
+    List<Palette> findAllByCategory_Id(UUID categoryId);
+
 
 }
